@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>作业列表</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background: #f5f7fa;
+            padding: 20px;
+        }
+        /* 左上角学号 */
+        .student-id {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 16px;
+            color: #333;
+            font-weight: bold;
+        }
+        /* 中间作业列表 */
+        .container {
+            max-width: 700px;
+            margin: 80px auto 0;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        .title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 25px;
+            color: #222;
+        }
+        .homework-list {
+            list-style: none;
+        }
+        .homework-list li {
+            margin: 14px 0;
+            font-size: 18px;
+        }
+        .homework-list a {
+            color: #2d6cdf;
+            text-decoration: none;
+        }
+        .homework-list a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- 左上角学号 -->
+    <div class="student-id">学号：25051030306</div>
+
+    <!-- 中间作业列表 -->
+    <div class="container">
+        <h2 class="title">课程作业列表</h2>
+        <ul class="homework-list">
+            <li><a href=" " target="_blank">作业1：HTML基础页面1</a ></li>
+           
+        </ul>
+    </div>
+</body>
+</html>
