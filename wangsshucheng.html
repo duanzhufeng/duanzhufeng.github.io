@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>网上书城-注册新用户</title>
+    <style>
+        /* 整体容器样式，模拟题图面板 */
+        .box {
+            width: 420px;
+            margin: 30px auto;
+            border: 1px solid #666;
+            background: #e8e8e8;
+        }
+        /* 顶部标题栏 */
+        .title-top {
+            background: #666;
+            color: #fff;
+            text-align: center;
+            padding: 8px;
+            font-size: 18px;
+        }
+        /* 表单区域标题 */
+        .form-title {
+            padding: 10px 15px;
+            font-size: 14px;
+        }
+        /* 表格表单间距 */
+        table {
+            margin: 0 auto 15px;
+        }
+        td {
+            padding: 6px 4px;
+        }
+        input {
+            width: 200px;
+            padding: 3px;
+        }
+        /* 提交按钮样式 */
+        .submit-btn {
+            width: 120px;
+            background: #666;
+            color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <!-- 顶部大标题 -->
+        <div class="title-top">网上书城</div>
+        <!-- 注册标题 -->
+        <div class="form-title">✚ 注册新用户</div>
+
+        <!-- 注册表单 -->
+        <form action="#" method="post">
+            <table>
+                <tr>
+                    <td>👤 用户名</td>
+                    <td><input type="text" name="username"></td>
+                </tr>
+                <tr>
+                    <td>🔒 密码</td>
+                    <td><input type="password" name="pwd"></td>
+                </tr>
+                <tr>
+                    <td>🔐 确认密码</td>
+                    <td><input type="password" name="repwd"></td>
+                </tr>
+                <tr>
+                    <td>📩 电子邮箱</td>
+                    <td><input type="email" name="email"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" value="注册新用户" class="submit-btn">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
