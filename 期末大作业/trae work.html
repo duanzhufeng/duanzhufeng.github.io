@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRAE Work</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style: none;
+            text-decoration: none;
+            font-family: "宋体", SimSun, serif;
+        }
+        /* ========== 替换为CSS静态点阵网格背景（静态点阵布局，无动态粒子） ========== */
+        body {
+            background: #000;
+            /* 点阵：圆点大小1px，格子间距20px，灰色小点 */
+            background-image: radial-gradient(#333336 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: #fff;
+            padding-top: 56px;
+            min-height: 100vh;
+            position: relative;
+        }
+        /* ① 顶部导航栏（复用首页导航代码） */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 56px;
+            background: #000;
+            border-bottom: 1px solid #222;
+            z-index: 999;
+        }
+        .nav-container {
+            width: 96%;
+            max-width: 900px;
+            height: 100%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+        }
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+        .menu-item {
+            position: relative;
+            height: 56px;
+            line-height: 56px;
+        }
+        .menu-item > a {
+            color: #ccc;
+            font-size: 14px;
+        }
+        .menu-item > a:hover {
+            color: #fff;
+        }
+        .product-dropdown {
+            display: none;
+            position: absolute;
+            top: 56px;
+            left: 0;
+            width: 180px;
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 4px;
+        }
+        .product-dropdown li {
+            padding: 10px 16px;
+        }
+        .product-dropdown li a {
+            color: #ccc;
+            display: block;
+        }
+        .product-dropdown li:hover {
+            background: #222;
+        }
+        .product-item:hover .product-dropdown {
+            display: block;
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .login-text {
+            color: #ccc;
+            font-size: 14px;
+        }
+        .nav-download {
+            padding: 6px 16px;
+            background: #29c870;
+            color: #000;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+        /* 页面主体容器，居中对齐 */
+        .work-wrap {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 80px auto 0;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        /* ② 标题区域：渐变标签 + 大标题 已移除红框 */
+        .title-box {
+            text-align: center;
+            padding: 16px 24px;
+        }
+        .tag-text {
+            font-size: 14px;
+            /* 渐变文字 */
+            background: linear-gradient(90deg, #29c870, #42e0ff);
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 8px;
+        }
+        .main-title {
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        /* ③ 文本输入框区域 已移除红框 */
+        .input-box {
+            padding: 12px;
+            background: #181820;
+        }
+        .top-tip {
+            font-size: 12px;
+            color: #aaa;
+            margin-bottom: 8px;
+        }
+        textarea {
+            width: 100%;
+            height: 90px;
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 8px;
+            color: #fff;
+            resize: none;
+            outline: none;
+            font-size: 13px;
+        }
+        /* ④ 底部按钮行 flex布局 */
+        .btn-row {
+            margin-top: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .left-btns {
+            display: flex;
+            gap: 12px;
+        }
+        .icon-btn {
+            width: 24px;
+            height: 24px;
+            background: #222;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            cursor: pointer;
+            color: #ccc;
+        }
+        .right-send {
+            width: 24px;
+            height: 24px;
+            background: #29c870;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        /* ⑤ 功能卡片区域 flex网格布局 2行3列 已移除红框 */
+        .card-box {
+            padding: 16px;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        .card-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            background: #181820;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #ccc;
+        }
+        .card-icon {
+            width: 20px;
+            height: 20px;
+            background: #222;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center
+            justify-content: center;
+        }
+        /* ⑥ 绿色渐变条：固定在页面最底部 */
+        .bottom-gradient-bar {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 40px;
+            background: linear-gradient(to bottom, transparent, #0f6b3b);
+            border-radius: 4px 4px 0 0;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- 删掉原来动态粒子canvas，改用body静态CSS点阵 -->
+    <!-- ① 顶部导航栏 -->
+    <header>
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="首页.html" class="logo">TRAE</a >
+                <ul class="nav-menu">
+                    <li class="menu-item product-item">
+                        <a href="#">产品 ▾</a >
+                        <ul class="product-dropdown">
+                            <li><a href="trae work.html">TRAE Work</a ></li>
+                            <li><a href="#">TRAE IDE</a ></li>
+                            <li><a href="#">TRAE 插件</a ></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item"><a href="#">企业版</a ></li>
+                    <li class="menu-item"><a href="price.html">定价</a ></li>
+                    <li class="menu-item"><a href="#">文档</a ></li>
+                    <li class="menu-item"><a href="changelog.html">更新日志</a ></li>
+                    <li class="menu-item"><a href="#">社区</a ></li>
+                    <li class="menu-item"><a href="#">知识库</a ></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <span class="login-text">登录</span>
+                <a href="#" class="nav-download">下载中心</a >
+            </div>
+        </div>
+    </header>
+    <!-- 页面主体内容（渐变已移出此容器） -->
+    <div class="work-wrap">
+        <!-- ② 标题区域 -->
+        <div class="title-box">
+            <div class="tag-text">全新 TRAE Work <span style="font-size:10px;background:#29c870;color:#000;padding:1px 4px;border-radius:2px;">BETA</span></div>
+            <h2 class="main-title">不止于码 大有可为</h2>
+        </div>
+        <!-- ③④ 文本框+底部按钮Flex -->
+        <div class="input-box">
+            <div class="top-tip">描述你的需求，接下来交给 TRAE Work</div>
+            <textarea placeholder="请输入你的需求..."></textarea>
+            <div class="btn-row">
+                <div class="left-btns">
+                    <div class="icon-btn">⊞</div>
+                    <div class="icon-btn">🖥</div>
+                    <div class="icon-btn">□</div>
+                </div>
+                <div class="right-send">▶</div>
+            </div>
+        </div>
+        <!-- ⑤ Flex卡片区域 2行3列 -->
+        <div class="card-box">
+            <div class="card-grid">
+                <div class="card-item">
+                    <div class="card-icon">📄</div>
+                    <span>撰写论文，产出论文链接</span>
+                </div>
+                <div class="card-item">
+                    <div class="card-icon">🖼</div>
+                    <span>调用各个绘图平台，生成工程图片</span>
+                </div>
+                <div class="card-item">
+                    <div class="card-icon">🤖</div>
+                    <span>挖掘AI的底层逻辑，分析数据趋势</span>
+                </div>
+                <div class="card-item">
+                    <div class="card-icon">🌐</div>
+                    <span>开发一个多语言学习网页</span>
+                </div>
+                <div class="card-item">
+                    <div class="card-icon">📋</div>
+                    <span>分析多个项目仓库，生成code wiki</span>
+                </div>
+                <div class="card-item">
+                    <div class="card-icon">⚙</div>
+                    <span>制作一个多端跨机的控制面板</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 绿色渐变条：放到body最末尾，固定页面视口最底部 -->
+    <div class="bottom-gradient-bar"></div>
+    <!-- 已删除动态粒子JS，不需要了 -->
+</body>
+</html>
